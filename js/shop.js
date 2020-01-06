@@ -13,6 +13,23 @@ window.Shop= {
 
     },
 
+    addProductToCart: function(productId){
+        var request={
+            //todo: take customer id dynamically somehow
+            customerId: 1,
+            productId: productId
+        }
+        $.ajax({
+            url: Shop.API_BASE_URL + "/carts",
+            method: "PUT",
+            contentType: "application/json",
+            data: JSON.stringify(request)
+        }).done(function () {
+            window.location.replace("cart.html");
+
+        })
+    },
+
     getProductHTML: function (product) {
         return `<div class="col-md-3 col-sm-6">
                     <div class="single-shop-product">
@@ -38,7 +55,7 @@ window.Shop= {
 
         $(".single-product-area .row:first-child").html(productsHTML);
 
-    }
+    },
 };
 
 Shop.getProducts();
