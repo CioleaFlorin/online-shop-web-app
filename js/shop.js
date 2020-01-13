@@ -16,9 +16,10 @@ window.Shop= {
     addProductToCart: function(productId){
         var request={
             //todo: take customer id dynamically somehow
-            customerId: 1,
+            customerId: 30,
             productId: productId
-        }
+        };
+
         $.ajax({
             url: Shop.API_BASE_URL + "/carts",
             method: "PUT",
@@ -56,6 +57,18 @@ window.Shop= {
         $(".single-product-area .row:first-child").html(productsHTML);
 
     },
+
+    bindEvents: function () {
+        $(".single-product-area").delegate(".add_to_cart_button", "click", function (event) {
+            event.preventDefault();
+
+            let productId = $(this).data("product_id");
+
+            Shop.addProductToCart(productId);
+        });
+
+    }
 };
 
 Shop.getProducts();
+Shop.bindEvents();
