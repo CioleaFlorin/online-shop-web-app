@@ -48,6 +48,7 @@ window.Shop= {
                     </div>
                 </div>`
 
+
     },
 
     displayProducts: function (products) {
